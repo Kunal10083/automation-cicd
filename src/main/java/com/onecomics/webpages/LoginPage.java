@@ -18,7 +18,7 @@ public class LoginPage extends ProjectMethods {
 		 PageFactory.initElements(driver, this);
 	 }
 
-	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 	
 	@FindBy(id = "AppleExchange")
 	public static WebElement loginWithAppleBtn;
