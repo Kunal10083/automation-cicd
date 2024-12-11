@@ -59,8 +59,8 @@ public class BaseClass {
 		}
 		
 		driver.get(prop.getProperty("url"));
-//        driver.manage().window().maximize();
-		driver.manage().window().setSize(new Dimension(2400, 1300));
+        driver.manage().window().maximize();
+//		driver.manage().window().setSize(new Dimension(2400, 1300));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		
 		}

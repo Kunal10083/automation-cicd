@@ -66,14 +66,10 @@ public class LoginPage extends ProjectMethods {
 		clickElement(preRegisterBtn);		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("signInName")));
 		sendKeys(emailIdTxtBox, id);
-//		emailIdTxtBox.sendKeys(id);
 		sendKeys(passwordTxtBox, password);
 		clickElement(signInBtn);
+		Assert.assertTrue(waitUntilTextIsPresent("All Set"));
 		checkPageIsReady();
-//		Assert.assertTrue(waitUntilTextIsPresent("All Set"));
-//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("allSetText")));
-//		System.out.println(allSetText.getText());
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//img[@alt='Profile']")));
 		clickElement(profileIcon);
 		clickElement(copyBtn);	
 		clickElement(logoutBtn);
