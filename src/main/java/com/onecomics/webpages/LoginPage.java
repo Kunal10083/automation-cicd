@@ -53,7 +53,7 @@ public class LoginPage extends ProjectMethods {
 	@FindBy(xpath = "//span[text()='All Set']")
 	public static WebElement allSetText;
 
-	@FindBy(xpath = "//button[@class='AppBar_userMenu__Qf6oK cursor-pointer']")
+	@FindBy(xpath = "//img[@alt='Profile']")
 	public static WebElement profileIcon;
 
 	@FindBy(xpath = "//div[text()='COPY']")
