@@ -72,7 +72,7 @@ public class LoginPage extends ProjectMethods {
 //		Assert.assertTrue(waitUntilTextIsPresent("All Set"));
 //		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("allSetText")));
 //		System.out.println(allSetText.getText());
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("AppBar_userMenu__Qf6oK cursor-pointer")));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("profileIcon")));
 		clickElement(profileIcon);
 		clickElement(copyBtn);	
 		clickElement(logoutBtn);
