@@ -70,7 +70,7 @@ public class LoginPage extends ProjectMethods {
 		sendKeys(passwordTxtBox, password);
 		clickElement(signInBtn);
 //		Assert.assertTrue(waitUntilTextIsPresent("All Set"));
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("allSetText")));
+//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("allSetText")));
 //		System.out.println(allSetText.getText());
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("profileIcon")));
 		clickElement(profileIcon);
