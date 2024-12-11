@@ -68,12 +68,12 @@ public class LoginPage extends ProjectMethods {
 		sendKeys(emailIdTxtBox, id);
 		sendKeys(passwordTxtBox, password);
 		clickElement(signInBtn);
-//		Assert.assertTrue(waitUntilTextIsPresent("All Set"));
 //		checkPageIsReady();
-//		clickElement(profileIcon);
-//		clickElement(copyBtn);	
-//		clickElement(logoutBtn);
-//		Assert.assertTrue(waitUntilTextIsPresent("PRE-REGISTER FOR BENEFITS"));
+		Assert.assertTrue(waitUntilTextIsPresent("All Set"));
+		clickElement(profileIcon);
+		clickElement(copyBtn);	
+		clickElement(logoutBtn);
+		Assert.assertTrue(waitUntilTextIsPresent("PRE-REGISTER FOR BENEFITS"));
 	}
 
 }
