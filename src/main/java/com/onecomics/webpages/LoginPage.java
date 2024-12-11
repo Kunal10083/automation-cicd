@@ -72,7 +72,7 @@ public class LoginPage extends ProjectMethods {
 //		Assert.assertTrue(waitUntilTextIsPresent("All Set"));
 //		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("allSetText")));
 //		System.out.println(allSetText.getText());
-//		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("profileIcon")));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//img[@alt='Profile']")));
 		clickElement(profileIcon);
 		clickElement(copyBtn);	
 		clickElement(logoutBtn);
