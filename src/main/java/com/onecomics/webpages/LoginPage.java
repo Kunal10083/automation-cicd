@@ -1,8 +1,13 @@
 package com.onecomics.webpages;
 
+import java.time.Duration;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import com.onecomics.projectmethods.ProjectMethods;
@@ -12,6 +17,8 @@ public class LoginPage extends ProjectMethods {
 	public LoginPage() {
 		 PageFactory.initElements(driver, this);
 	 }
+
+	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
 	
 	@FindBy(id = "AppleExchange")
 	public static WebElement loginWithAppleBtn;
@@ -56,14 +63,16 @@ public class LoginPage extends ProjectMethods {
 	public static WebElement logoutBtn;
 	
 	public void login(String id, String password) throws InterruptedException {
-		clickElement(preRegisterBtn);
-		Thread.sleep(2000);
-//		sendKeys(emailIdTxtBox, id);
-		emailIdTxtBox.sendKeys(id);
+		clickElement(preRegisterBtn);		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("emailIdTxtBox")));
+		sendKeys(emailIdTxtBox, id);
+//		emailIdTxtBox.sendKeys(id);
 		sendKeys(passwordTxtBox, password);
 		clickElement(signInBtn);
-		Assert.assertTrue(waitUntilTextIsPresent("All Set")); 
-		System.out.println(allSetText.getText());
+//		Assert.assertTrue(waitUntilTextIsPresent("All Set"));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("allSetText")));
+//		System.out.println(allSetText.getText());
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("profileIcon")));
 		clickElement(profileIcon);
 		clickElement(copyBtn);	
 		clickElement(logoutBtn);
