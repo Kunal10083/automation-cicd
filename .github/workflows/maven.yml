@@ -19,7 +19,7 @@ jobs:
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
-          distribution: 'temurin'
+          distribution: "temurin"
           java-version: 17
 
       # Step 3: Cache Maven dependencies
@@ -35,10 +35,18 @@ jobs:
       - name: Set up Chrome and ChromeDriver
         run: |
           sudo apt-get update
-          sudo apt-get install -y google-chrome-stable libnss3 libxss1 libappindicator1 libindicator7 unzip
-          CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
+          sudo apt-get install -y google-chrome-stable libnss3 libxss1 libappindicator1 libindicator7 unzip wget curl
+
+          # Get Chrome version
+          CHROME_VERSION=$(google-chrome --version | grep -oP '\\d+\\.\\d+\\.\\d+')
+          echo "Installed Chrome version: $CHROME_VERSION"
+
+          # Get ChromeDriver version compatible with Chrome
           CHROME_DRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION%.*})
-          wget -N https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip
+          echo "Installing ChromeDriver version: $CHROME_DRIVER_VERSION"
+
+          # Download and install ChromeDriver
+          wget -q https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip -O chromedriver_linux64.zip
           unzip chromedriver_linux64.zip
           sudo mv chromedriver /usr/local/bin/
           sudo chmod +x /usr/local/bin/chromedriver
