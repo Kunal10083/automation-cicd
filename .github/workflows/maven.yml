@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       # Step 1: Checkout code
@@ -19,7 +19,7 @@ jobs:
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
-          distribution: "temurin"
+          distribution: 'temurin'
           java-version: 17
 
       # Step 3: Cache Maven dependencies
@@ -34,22 +34,21 @@ jobs:
       # Step 4: Install Chrome and ChromeDriver
       - name: Set up Chrome and ChromeDriver
         run: |
-          sudo apt-get update
-          sudo apt-get install -y google-chrome-stable libnss3 libxss1 libappindicator1 libindicator7 unzip wget curl
+          # Download and install Google Chrome
+          choco install googlechrome --no-progress --yes
 
           # Get Chrome version
-          CHROME_VERSION=$(google-chrome --version | grep -oP '\\d+\\.\\d+\\.\\d+')
+          $CHROME_VERSION = (Get-ItemProperty -Path 'HKLM:\SOFTWARE\Google\Chrome\BLBeacon').version
           echo "Installed Chrome version: $CHROME_VERSION"
 
           # Get ChromeDriver version compatible with Chrome
-          CHROME_DRIVER_VERSION=$(curl -sS https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_VERSION%.*})
+          $CHROME_DRIVER_VERSION = Invoke-RestMethod -Uri "https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$($CHROME_VERSION -split '\.' | Select-Object -First 1)"
           echo "Installing ChromeDriver version: $CHROME_DRIVER_VERSION"
 
           # Download and install ChromeDriver
-          wget -q https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip -O chromedriver_linux64.zip
-          unzip chromedriver_linux64.zip
-          sudo mv chromedriver /usr/local/bin/
-          sudo chmod +x /usr/local/bin/chromedriver
+          Invoke-WebRequest -Uri "https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_win32.zip" -OutFile chromedriver_win32.zip
+          Expand-Archive -Path chromedriver_win32.zip -DestinationPath . -Force
+          Move-Item -Path .\chromedriver.exe -Destination C:\Windows\System32\chromedriver.exe -Force
 
       # Step 5: Verify Chrome and ChromeDriver Versions
       - name: Verify Chrome and ChromeDriver
