@@ -100,6 +100,12 @@ public class ProjectMethods extends BaseClass{
 			}
 		}
 	}
+
+	public void pageRefresh() throws InterruptedException {
+		driver.navigate().refresh();
+		checkPageIsReady();
+		
+	}
 	
 	public boolean validateBrowser2(String winHandleBefore, String validateContent) throws InterruptedException {
 		checkPageIsReady();

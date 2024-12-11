@@ -69,6 +69,7 @@ public class LoginPage extends ProjectMethods {
 //		emailIdTxtBox.sendKeys(id);
 		sendKeys(passwordTxtBox, password);
 		clickElement(signInBtn);
+		checkPageIsReady();
 //		Assert.assertTrue(waitUntilTextIsPresent("All Set"));
 //		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("allSetText")));
 //		System.out.println(allSetText.getText());
