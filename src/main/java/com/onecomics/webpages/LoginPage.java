@@ -53,7 +53,7 @@ public class LoginPage extends ProjectMethods {
 	@FindBy(xpath = "//span[text()='All Set']")
 	public static WebElement allSetText;
 
-	@FindBy(xpath = "//img[@alt=\"Profile\"]")
+	@FindBy(xpath = "//img[@alt='Profile']")
 	public static WebElement profileIcon;
 
 	@FindBy(xpath = "//div[text()='COPY']")
@@ -64,7 +64,7 @@ public class LoginPage extends ProjectMethods {
 	
 	public void login(String id, String password) throws InterruptedException {
 		clickElement(preRegisterBtn);		
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("emailIdTxtBox")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("signInName")));
 		sendKeys(emailIdTxtBox, id);
 //		emailIdTxtBox.sendKeys(id);
 		sendKeys(passwordTxtBox, password);
