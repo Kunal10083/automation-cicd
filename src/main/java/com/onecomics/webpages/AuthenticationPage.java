@@ -12,9 +12,9 @@ import org.testng.Assert;
 
 import com.onecomics.projectmethods.ProjectMethods;
 
-public class LoginPage extends ProjectMethods {
+public class AuthenticationPage extends ProjectMethods {
 	
-	public LoginPage() {
+	public AuthenticationPage() {
 		 PageFactory.initElements(driver, this);
 	 }
 
@@ -32,6 +32,9 @@ public class LoginPage extends ProjectMethods {
 	@FindBy(id = "signInName")
 	public static WebElement emailIdTxtBox;
 	
+//	@FindBy(xpath = "(//div[@class='entry-item'])[1]")
+//	public static WebElement emailIdTxtBox;
+
 	@FindBy(id = "password")
 	public static WebElement passwordTxtBox;
 	
@@ -65,10 +68,13 @@ public class LoginPage extends ProjectMethods {
 	public void login(String id, String password) throws InterruptedException {
 		clickElement(preRegisterBtn);		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("signInName")));
+		Thread.sleep(2000);
 		sendKeys(emailIdTxtBox, id);
+//		emailIdTxtBox.sendKeys(id);
 		sendKeys(passwordTxtBox, password);
 		clickElement(signInBtn);
 //		checkPageIsReady();
+		Thread.sleep(8000);
 		Assert.assertTrue(waitUntilTextIsPresent("All Set"));
 		clickElement(profileIcon);
 		clickElement(copyBtn);	

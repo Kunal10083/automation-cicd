@@ -5,18 +5,18 @@ import org.testng.annotations.Test;
 
 import com.onecomics.base.BaseClass;
 import com.onecomics.webpages.LandingPage;
-import com.onecomics.webpages.LoginPage;
+import com.onecomics.webpages.AuthenticationPage;
 
-public class LoginPageTest extends BaseClass{
+public class AuthenticationPageTest extends BaseClass{
 	
-	LoginPage loginpage;
+	AuthenticationPage loginpage;
 	
 	@BeforeMethod
 	public void initialSetup() {
-		loginpage = new LoginPage();		
+		loginpage = new AuthenticationPage();		
 	}
 	
-	@Test
+	@Test  (priority = 1)
 	public void verifyLoginPage() throws InterruptedException {
 		loginpage.login("kunal.anarse@eminds.ai", "Test@1234");
 	}
